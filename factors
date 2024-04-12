@@ -1,26 +1,23 @@
 #!/usr/bin/python3
 import sys
-import math
-
 def factorize(n):
     if n % 2 == 0:
-        return("{} = {} * {}".format(n, 2, (n // 2)))
+        return("{}={}*{}".format(n, (n // 2), 2))
     
-    sq = math.sqrt(n)
-    """
+    sq = n**0.5
+    
     if sq % 1 == 0:
-        return("{} = {} * {}".format(n, sq, sq)) 
+        return("{}={}*{}".format(n, int(sq), int(sq))) 
 
-    else:"""
     for i in range(3, int(sq) + 1, 2):
         if n % i == 0:
-            return("{} = {} * {}".format(n, i, (n // i)))
+            return("{}={}*{}".format(n,(n // i), i))
         if n % (sq + i) == 0:
-            return("{} = {} * {}".format(n, (n // (sq + i)),sq + i))
-        if n % (sq - i) == 0:
-            return("{} = {} * {}".format(n, (n // (sq - i)),sq - i))
+            return("{}={}*{}".format(n, (n // (int(sq) + i)),int(sq) + i))
+        if n % (int(sq) - i) == 0:
+            return("{}={}*{}".format(n, (n // (int(sq) - i)),int(sq) - i))
         else:
-            return("{} = {} * {}".format(n, 1, n))
+            return("{}={}*{}".format(n, n, 1))
 
 if __name__ == '__main__':
         with open(sys.argv[1], encoding="utf-8") as my_file:
