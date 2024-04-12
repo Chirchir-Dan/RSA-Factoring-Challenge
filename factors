@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+"""
+Module to factorize numbers from a file into a product of two smaller numbers.
+"""
+
+import math
+import sys
+
+def factorize_numbers(filename):
+    """
+    Factorizes numbers from a file into a product of two smaller numbers.
+
+    Args:
+        filename (str): The path to the file containing numbers to factorize.
+                      Each line in the file should contain a single integer greater than 1.
+
+    Returns:
+        None: Prints the factorization of each number to the standard output.
+    """
+
+    def find_factors(num):
+        """
+        Finds factors of a given number.
+
+        Args:
+            num (int): The number to find factors for.
+
+        Returns:
+            tuple: A tuple containing the pair of factors for the input number.
+        """
+
+        if num % 2 == 0:
+            return (2, num // 2)
+        sq = int(math.sqrt(num)) + 1
+        for i in range(3, sq, 2):
+            if num % i == 0:
+                return (i, num // i)
+                """
+            if num % (sq + i) == 0:
+                return (sq + i, num // (sq + i))
+            if num % (sq - i) == 0:
+                return (sq - i, num // (sq - i))"""
+        return None
+
+    with open(filename, encoding="utf-8") as my_file:
+        for i in my_file.readlines():
+            n = int(i)
+            factors = find_factors(n)
+            if factors:
+                print(f"{n}={factors[0]}*{factors[1]}")
+            else:
+                print(f"No factorization found for {n}")
+
+# Test the function with a simple input file
+if __name__ == "__main__":
+    factorize_numbers(sys.argv[1])
+
