@@ -35,11 +35,11 @@ def factorize_numbers(filename):
         for i in range(3, sq, 2):
             if num % i == 0:
                 return (i, num // i)
-                """
+                
             if num % (sq + i) == 0:
                 return (sq + i, num // (sq + i))
             if num % (sq - i) == 0:
-                return (sq - i, num // (sq - i))"""
+                return (sq - i, num // (sq - i))
         return None
 
     with open(filename, encoding="utf-8") as my_file:
